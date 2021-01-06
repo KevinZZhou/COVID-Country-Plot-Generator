@@ -78,6 +78,30 @@ dates: list = [dt.datetime.strptime(d, "%Y-%m-%d").date() for d in ds]
     # Total COVID-19 deaths
     # New daily COVID-19 deaths
 total_cases: list = covid_df[covid_df["location"] == country]["total_cases"]
-new_cases: list = covid_df[covid_df["location"] == country]["new_cases"]
 total_deaths: list = covid_df[covid_df["location"] == country]["total_deaths"]
+new_cases: list = covid_df[covid_df["location"] == country]["new_cases"]
 new_deaths: list = covid_df[covid_df["location"] == country]["new_deaths"]
+
+# Set up the main plot with 4 subplots
+fig, axes = plt.subplots(2, 2)
+fig.suptitle("COVID-19 Visualizations: " + country)
+
+# Set up the total COVID-19 cases subplot
+axes[0, 0].plot(dates, total_cases)
+# TODO: Add labels
+
+# Set up the total COVID-19 deaths subplot
+axes[0, 1].plot(dates, total_deaths)
+# TODO: Add labels
+
+# Set up the new daily COVID-19 cases subplot
+axes[1, 0].plot(dates, new_cases)
+# TODO: Add labels
+
+# Set up the new daily COVID-19 deaths subplot
+axes[1, 1].plot(dates, new_deaths)
+# TODO: Add labels
+
+# Display the plot
+plt.show()
+# TODO: Export the visualization as a png
