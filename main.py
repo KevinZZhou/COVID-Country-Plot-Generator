@@ -2,7 +2,7 @@
 This Python code takes user input for a country name and outputs a Matplotlib 
 plot of COVID-19 cases and deaths for the specified country.
 
-List of countries:
+List of valid countries for user input:
 ['Afghanistan' 'Albania' 'Algeria' 'Andorra' 'Angola'
  'Antigua and Barbuda' 'Argentina' 'Armenia' 'Australia' 'Austria'
  'Azerbaijan' 'Bahamas' 'Bahrain' 'Bangladesh' 'Barbados' 'Belarus'
@@ -112,4 +112,4 @@ axes[1, 1].set_ylabel("Deaths")
 
 # Export the plot as a png image
 file_name: str = country.replace(" ", "-")
-fig.savefig(file_name + ".png", bbox_inches = "tight")
+fig.savefig("plots/" + file_name + ".png", bbox_inches = "tight")
