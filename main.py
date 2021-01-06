@@ -83,25 +83,33 @@ new_cases: list = covid_df[covid_df["location"] == country]["new_cases"]
 new_deaths: list = covid_df[covid_df["location"] == country]["new_deaths"]
 
 # Set up the main plot with 4 subplots
-fig, axes = plt.subplots(2, 2)
-fig.suptitle("COVID-19 Visualizations: " + country)
+fig, axes = plt.subplots(2, 2, figsize = (20, 12))
+fig.suptitle("COVID-19 Visualizations: " + country, fontsize = 30)
 
 # Set up the total COVID-19 cases subplot
 axes[0, 0].plot(dates, total_cases)
-# TODO: Add labels
+axes[0, 0].set_title("Total Cases in " + country)
+axes[0, 0].set_xlabel("Date")
+axes[0, 0].set_ylabel("Cases")
 
 # Set up the total COVID-19 deaths subplot
 axes[0, 1].plot(dates, total_deaths)
-# TODO: Add labels
+axes[0, 1].set_title("Total Deaths in " + country)
+axes[0, 1].set_xlabel("Date")
+axes[0, 1].set_ylabel("Deaths")
 
 # Set up the new daily COVID-19 cases subplot
 axes[1, 0].plot(dates, new_cases)
-# TODO: Add labels
+axes[1, 0].set_title("Daily Cases in " + country)
+axes[1, 0].set_xlabel("Date")
+axes[1, 0].set_ylabel("Cases")
 
 # Set up the new daily COVID-19 deaths subplot
 axes[1, 1].plot(dates, new_deaths)
-# TODO: Add labels
+axes[1, 1].set_title("Daily Deaths in " + country)
+axes[1, 1].set_xlabel("Date")
+axes[1, 1].set_ylabel("Deaths")
 
-# Display the plot
-plt.show()
-# TODO: Export the visualization as a png
+# Export the plot as a png image
+file_name: str = country.replace(" ", "-")
+fig.savefig(file_name + ".png", bbox_inches = "tight")
