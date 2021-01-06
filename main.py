@@ -56,15 +56,28 @@ country_list: ExtensionArray = covid_df["location"].unique()
 
 # While loop to get user input for the desired country
 while True:
-    print("List of countries:")
-    print(country_list)
-    user_input = input(
+    user_input: str = input(
             "Enter the country that you want to generate a plot for: ")
-    country = user_input.title()
+    country: str = user_input.title()
+    # Use the array of different countries to check if the user input is valid
+    # Continue to loop if the input is invalid
     if country not in country_list:
         print("That country is not in the list.  Try again.")
         continue
+    # Exit the while loop otherwise
     else:
         break
 
-print(country)
+# Get a list of dates for the specified country - Used as x-values
+ds: list = covid_df[covid_df["location"] == country]['date']
+dates: list = [dt.datetime.strptime(d, "%Y-%m-%d").date() for d in ds]
+
+# Get lists of 4 important statistics for the specified country:
+    # Total COVID-19 cases
+    # New daily COVID-19 cases
+    # Total COVID-19 deaths
+    # New daily COVID-19 deaths
+total_cases: list = covid_df[covid_df["location"] == country]["total_cases"]
+new_cases: list = covid_df[covid_df["location"] == country]["new_cases"]
+total_deaths: list = covid_df[covid_df["location"] == country]["total_deaths"]
+new_deaths: list = covid_df[covid_df["location"] == country]["new_deaths"]
